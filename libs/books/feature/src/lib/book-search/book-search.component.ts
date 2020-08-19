@@ -9,6 +9,7 @@ import {
 } from '@tmo/books/data-access';
 import { FormBuilder } from '@angular/forms';
 import { Book } from '@tmo/shared/models';
+import { MessageSnackBarService } from '../message-snackbar/message-snackbar.service';
 
 @Component({
   selector: 'tmo-book-search',
@@ -24,7 +25,8 @@ export class BookSearchComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly snackbar: MessageSnackBarService
   ) {}
 
   get searchTerm(): string {
@@ -45,6 +47,12 @@ export class BookSearchComponent implements OnInit {
 
   addBookToReadingList(book: Book) {
     this.store.dispatch(addToReadingList({ book }));
+    this.openSnack(book);
+  }
+
+  openSnack(book: Book) {
+    console.log('***********************************************')
+    this.snackbar.openSnackBar(book, true);
   }
 
   searchExample() {
