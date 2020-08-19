@@ -8,8 +8,19 @@
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
       </div>
+      <div class="reading-list-item--details--author" *ngIf="b.finished">
+        Finished On: {{b.finishedDate }}
+      </div>
     </div>
-    <div>
+    <div class="icon-container">
+      <button *ngIf="!b.finished"
+      mat-icon-button
+      [attr.aria-label]="'Finish reading book ' + b.title"
+      alt="Finished"
+      (click)="finishReadingBook(b)"
+      >
+      <mat-icon>book</mat-icon>
+      </button>
       <button
         mat-icon-button
         color="warn"

@@ -45,3 +45,13 @@
   font-size: 1rem;
   color: $gray60;
 }
+
+.icon-container{
+  
+  display: flex;
+  flex-direction: row !important;
+
+  button {
+    display: inline-block;
+  }
+}
